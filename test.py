@@ -7,5 +7,5 @@ ids = ["0xb794f5ea0ba39494ce839613fffba74279579268", "0x60e16961ad6138d2fb3e556f
 print(tracker.getAmountFromAccountEther(id))
 print(tracker.getAmountFromMultipleAccountsEther(ids))
 print(alterJson.addNonprofit("testProgram"))
-print(alterJson.addAddress("testProgram", "testid"))
-print(alterJson.addAddress("newTest", "testid2"))
+print(alterJson.addEtherAddress("testProgram", "testid"))
+print(alterJson.addEtherAddress("newTest", "testid2"))

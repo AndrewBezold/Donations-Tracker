@@ -3,11 +3,11 @@ import json
 def addNonprofit(nonprofitName):
 	with open('accounts.json', 'r') as infile:
 		data = json.load(infile)
-	data["nonprofits"].append({"name": nonprofitName, "accounts": []})
+	data["nonprofits"].append({"name": nonprofitName, "accounts": {}})
 	with open('accounts.json', 'w') as outfile:
 		json.dump(data, outfile)
 
-def addAddress(nonprofitName, address):
+def addAddress(nonprofitName, address, coin):
 	with open('accounts.json', 'r') as infile:
 		data = json.load(infile)
 	index = None
@@ -23,7 +23,11 @@ def addAddress(nonprofitName, address):
 			if(data["nonprofits"][i]["name"] == nonprofitName):
 				index = i
 				break
-	data["nonprofits"][index]["accounts"].append({"address": address})
+	if(coin not in data["nonprofits"][index]["accounts"]):
+		data["nonprofits"][index]["accounts"][coin] = []
+	data["nonprofits"][index]["accounts"][coin].append({"address": address})
 	with open('accounts.json', 'w') as outfile:
 		json.dump(data, outfile)
-	
+
+def addEtherAddress(nonprofitName, address):
+	addAddress(nonprofitName, address, "ETH")
